@@ -23,7 +23,7 @@
             border-radius: 10px;
             color: white;
             text-align: center;
-            margin: 20px auto; /* Agrega espacio superior e inferior al formulario */
+            margin: 70px auto; /* Agrega espacio superior e inferior al formulario */
         }
         .form-group {
             margin-bottom: 15px;
@@ -71,6 +71,18 @@
         button:hover {
             background-color: #45a049;
         }
+
+        .oculto{
+            display: none;
+        }
+
+        .valido { 
+            border: 2px solid green; 
+        }
+
+        .invalido { 
+            border: 2px solid red; 
+        }
     </style>
 </head>
 <body>
@@ -78,24 +90,24 @@
         <!-- Contenido del formulario -->
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Valentina" required>
+            <input type="text" id="nombre" name="nombre" onblur="mostrarMensaje()"  placeholder="Nombre" required>
         </div>
         <div class="form-group">
             <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
+            <input type="text" id="apellido" name="apellido" oninput="verificar()"  placeholder="Apellido" required>
         </div>
         <div class="form-group">
             <label>¿Desea registrarse en el concurso?</label>
             <div class="radio-group">
                 <label>
-                    <input type="radio" name="registro_concurso" value="sí" required> Sí
+                    <input type="radio" name="registro_concurso" onclick="mostrarCheckbox()" value="sí" required> Sí
                 </label>
                 <label>
-                    <input type="radio" name="registro_concurso" value="no"> No
+                    <input type="radio" name="registro_concurso" onclick="noMostrarCheckbox()" value="no"> No
                 </label>
             </div>
         </div>
-        <div class="form-group">
+        <div id="checkbox-adicionales" class="oculto">
             <label>Modalidades</label>
             <div class="checkbox-group">
                 <label>
@@ -108,7 +120,7 @@
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="email" id="email" name="email" placeholder="Email" pattern=".+@.+"  title="El correo debe contener el @" required>
         </div>
         <div class="form-group">
             <label for="fecha_nacimiento">Fecha de nacimiento</label>
@@ -116,13 +128,14 @@
         </div>
         <div class="form-group">
             <label for="contrasena">Contraseña</label>
-            <input type="password" id="contrasena" name="contrasena" required>
+            <input type="password" id="contrasena" name="contrasena" oninput="verificarPass()" required>
         </div>
         <div class="form-group">
             <label for="confirmar_contrasena">Confirmar contraseña</label>
-            <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" required>
+            <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" oninput="verificarPass()" required>
         </div>
-        <button type="submit">Enviar</button>
+        <button type="submit" id="boton1">Enviar</button>
     </form>
 </body>
+<script src="Verificacion.js"></script>
 </html>
